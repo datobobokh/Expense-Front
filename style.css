@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+}
+
+
+body {
+    height: 100vh;
+}
+
+section {
+    width: 100%;
+    min-height: 100%;
+    background-color: #657580;
+    display: flex;
+    justify-content: center;
+}
+
+
+#main_content {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 600px;
+    height: auto;
+    align-items: center;
+
+}
+
+
+#h1 {
+    color: #f12c0e;
+    font-size: 67px;
+    font-weight: 700;
+    line-height: 1.1;
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
+
+#inputsAndButton {
+    width: 100%;
+    height: 13%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+#labelAndInput1 {
+    height: 60%;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#labelAndInput2 {
+    height: 60%;
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#buttonAndLabel {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+label {
+    font: 15px sans-serif;
+}
+#input1 {
+    height: 40px;
+    width: 100%;
+    font: 15px/3 sans-serif;
+}
+
+#input2 {
+    height: 40px;
+    width: 100%;
+    font: 15px/3 sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input {
+    outline:none;
+    text-indent: 10px;
+}
+
+#button {
+    height: 43px;
+    width: 100%;
+    background-color: rgb(75,133,105);
+    font-size: 20px;
+}
+
+button:hover {
+    background-color: green;
+}
+
+.inputsAndButt {
+    border: solid 0px;
+    border-radius: 0.5vh;
+}
+
+
+/* ToTal Money */
+
+#paramOfAmount {    
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#totalMoneyP{
+    font: 25px sans-serif;
+}
+
+/* LISTS */
+
+
+#listOfAddedItems {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.blocks {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.shopNames {
+    width: 40%;
+}
+
+.otherInfoAboutShopping {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.shopNamesP {
+    font: 20px sans-serif;
+}
+
+.datesP {
+    font: 20px sans-serif;
+}
+
+.spendP {
+    font: 20px sans-serif;
+}
+
+
+    /* For phones: */
+
+@media only screen and (max-width: 600px) {
+    
+    section {
+        background-color: rgb(226,243,255);
+    }
+    
+
+    #headline {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #h1 {
+        font-size: 40px;
+    }
+    
+    #inputsAndButton {
+        width: 90%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    
+    #labelAndInput1 {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    #labelAndInput2 {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    
+    #buttonAndLabel {
+        height: 100%;
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    
+    label {
+        font: 15px sans-serif;
+    }
+
+    #input1 {
+        height: 40px;
+        width: 100%;
+        font: 15px/3 sans-serif;
+    }
+    
+    #input2 {
+        height: 40px;
+        width: 100%;
+        font: 15px/3 sans-serif;
+    }
+    
+    
+    #button {
+        height: 43px;
+        width: 100%;
+        background-color: rgb(75,133,105);
+        font-size: 20px;
+    }
+    
+
+
+    /* ToTal Monay */
+    #paramOfAmount {    
+        width: 90%;
+        height: 8%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: start;
+    }
+
+    #totalMoneyP{
+        font: 22px sans-serif;
+    }
+
+    /* LISTS */
+
+
+#listOfAddedItems {
+    width: 90%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.blocks {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.shopNames {
+    width: 50%;
+}
+
+.otherInfoAboutShopping {
+    width: 50%;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+}
