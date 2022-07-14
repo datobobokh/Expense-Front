@@ -4,7 +4,7 @@ let totally = 0;
 
 window.onload = async function init () {
 
-    const response = await fetch('http://localhost:3000/api/expenses/', {
+    const response = await fetch('http://localhost:8000/api/expenses/', {
         method: 'GET'
     });
     let result = await response.json();
@@ -52,7 +52,7 @@ const render = () => {
              addedDate.className = 'addedDate';
              const addDateInParag = document.createElement('p');
              addDateInParag.className = 'datesP';
-             const textNode2 = document.createTextNode(item.date);
+             const textNode2 = document.createTextNode(item.createdAt);
              addDateInParag.appendChild(textNode2);
              addedDate.appendChild(addDateInParag);
              divOfDtSpendIcons.appendChild(addedDate);
