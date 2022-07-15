@@ -1,26 +1,22 @@
-let finalResult = [];
-let totally = 0;
-
-
-window.onload = async function init () {
-
-    const response = await fetch('http://localhost:8000/api/expenses/', {
-        method: 'GET'
+const getResponse = async(link, methd, id) => {
+    const response = await fetch((id ? `${link}${id}` : link ), {
+        method: methd
     });
-    let result = await response.json();
-    finalResult = result;
-    render();
+    const result = await response.json();
+    render(result);
 }
 
-const render = () => {
+window.onload = function init () {
+    getResponse("http://localhost:8000/api/expenses/", 'GET');
+}
+
+const render = (result) => {
+    let totally = 0;
     const parentDivOfBlocks = document.getElementById('listOfAddedItems');
-    while (parentDivOfBlocks.firstChild) {
-        parentDivOfBlocks.removeChild(parentDivOfBlocks.firstChild);
-    }
+    parentDivOfBlocks.innerHTML = '';
 
-    if (finalResult) {
-        finalResult.map((item, index) => {
-
+    if (result) {
+        result.map((item, index) => {
             // Whole Block For Getting INFO
 
             const blocks = document.createElement('div')
@@ -100,6 +96,4 @@ const render = () => {
             totalSpend.appendChild(totalSpendParag);
         })
     }
-    totally = 0;
-
 }
