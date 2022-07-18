@@ -73,13 +73,13 @@ section {
 label {
     font: 15px sans-serif;
 }
-#input1 {
+#inputShop {
     height: 40px;
     width: 100%;
     font: 15px/3 sans-serif;
 }
 
-#input2 {
+#inputSpend {
     height: 40px;
     width: 100%;
     font: 15px/3 sans-serif;
@@ -225,13 +225,13 @@ button:hover {
         font: 15px sans-serif;
     }
 
-    #input1 {
+    #inputShop {
         height: 40px;
         width: 100%;
         font: 15px/3 sans-serif;
     }
     
-    #input2 {
+    #inputSpend {
         height: 40px;
         width: 100%;
         font: 15px/3 sans-serif;
