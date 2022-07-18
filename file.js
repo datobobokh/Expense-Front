@@ -1,3 +1,4 @@
+let inputValueObj = {};
 const getResponsesWithoutBody = async(link, methd, id) => {
     const response = await fetch((id ? `${link}${id}` : link ), {
         method: methd
@@ -5,19 +6,46 @@ const getResponsesWithoutBody = async(link, methd, id) => {
     const result = await response.json();
     render(result);
 }
-
+const getResponsesWithBody = async(link, methd, id) => {
+    const response = await fetch((id ? `${link}${id}` : link ), {
+        method: methd,
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+            shop: inputValueObj.shop,
+            spend: inputValueObj.spend
+        })
+    });
+    const result = await response.json();
+    render(result);
+}
+const updateValue = ({target}) => {
+    const {value, id} = target;
+    id == 'inputShop' ? inputValueObj.shop = value :  inputValueObj.spend = value;
+}
 window.onload = function init () {
+    const inputShop = document.getElementById('inputShop');
+    const inputSpend = document.getElementById('inputSpend');
+    inputShop.addEventListener('change', updateValue);
+    inputSpend.addEventListener('change', updateValue);
     getResponsesWithoutBody("http://localhost:8000/api/expenses/", 'GET');
 }
-
+const addNewExpense = () => {
+    getResponsesWithBody("http://localhost:8000/api/expenses/", 'POST');
+    inputValueObj = {};
+    inputShop.value = '';
+    inputSpend.value = '';
+}
+const inputButtonElement = document.getElementById('button');
+inputButtonElement.addEventListener('click', addNewExpense);
 const render = (result) => {
     let totally = 0;
     const parentDivOfBlocks = document.getElementById('listOfAddedItems');
     parentDivOfBlocks.innerHTML = '';
-
     if (result) {
         result.map((item, index) => {
-            const {id, createdAt, shop, spend} = item;
+            const {id, shop, spend, createdAt} = item;
             // Whole Block For Getting INFO
             const blocks = document.createElement('div')
             blocks.className = 'blocks';
