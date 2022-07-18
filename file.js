@@ -31,12 +31,14 @@ window.onload = function init () {
     inputSpend.addEventListener('change', updateValue);
     getResponsesWithoutBody("http://localhost:8000/api/expenses/", 'GET');
 }
-const sendRequest = () => {
+const addNewExpense = () => {
     getResponsesWithBody("http://localhost:8000/api/expenses/", 'POST');
     inputValueObj = {};
     inputShop.value = '';
     inputSpend.value = '';
 }
+const inputButtonElement = document.getElementById('button');
+inputButtonElement.addEventListener('click', addNewExpense);
 const render = (result) => {
     let totally = 0;
     const parentDivOfBlocks = document.getElementById('listOfAddedItems');
