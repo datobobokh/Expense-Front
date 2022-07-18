@@ -1,4 +1,4 @@
-const getResponse = async(link, methd, id) => {
+const getResponsesWithoutBody = async(link, methd, id) => {
     const response = await fetch((id ? `${link}${id}` : link ), {
         method: methd
     });
@@ -7,7 +7,7 @@ const getResponse = async(link, methd, id) => {
 }
 
 window.onload = function init () {
-    getResponse("http://localhost:8000/api/expenses/", 'GET');
+    getResponsesWithoutBody("http://localhost:8000/api/expenses/", 'GET');
 }
 
 const render = (result) => {
@@ -17,20 +17,18 @@ const render = (result) => {
 
     if (result) {
         result.map((item, index) => {
+            const {id, createdAt, shop, spend} = item;
             // Whole Block For Getting INFO
-
             const blocks = document.createElement('div')
             blocks.className = 'blocks';
 
              //Lists
-
              const shops = document.createElement('div');
              shops.className = 'shopNames';
-
              const shopNameParag = document.createElement('p');
              shopNameParag.className = 'shopNamesP';
 
-             const textNode1 = document.createTextNode(`${index + 1}. Shop Called "${item.shop}"`);
+             const textNode1 = document.createTextNode(`${index + 1}. Shop Called "${shop}"`);
              
              shopNameParag.appendChild(textNode1);
              shops.appendChild(shopNameParag);
@@ -38,35 +36,31 @@ const render = (result) => {
              // parentDivOfBlocks.appendChild(blocks);
      
              // Rest of the Data in Div
-
              const divOfDtSpendIcons = document.createElement('div');
              divOfDtSpendIcons.className = 'divOfDtSpendIcons';
 
              // dates
-
              const addedDate = document.createElement('div');
              addedDate.className = 'addedDate';
              const addDateInParag = document.createElement('p');
              addDateInParag.className = 'datesP';
-             const textNode2 = document.createTextNode(item.createdAt);
+             const textNode2 = document.createTextNode(createdAt);
              addDateInParag.appendChild(textNode2);
              addedDate.appendChild(addDateInParag);
              divOfDtSpendIcons.appendChild(addedDate);
              blocks.appendChild(divOfDtSpendIcons);
      
              // Spent USD's
-     
-             const spend = document.createElement('div');
-             spend.className = 'spend';
+             const spendDiv = document.createElement('div');
+             spendDiv.className = 'spend';
              const addSpendingInParag = document.createElement('p');
              addSpendingInParag.className = 'spendP';
-             const textNode3 = document.createTextNode(`$ ${item.spend}`);
+             const textNode3 = document.createTextNode(`$ ${spend}`);
              addSpendingInParag.appendChild(textNode3);
-             spend.appendChild(addSpendingInParag);
-             divOfDtSpendIcons.appendChild(spend);
+             spendDiv.appendChild(addSpendingInParag);
+             divOfDtSpendIcons.appendChild(spendDiv);
              blocks.appendChild(divOfDtSpendIcons);
-     
-
+             
              // add icons 
              const iconDiv = document.createElement('div');
              iconDiv.className = 'iconDiv';
@@ -86,11 +80,8 @@ const render = (result) => {
             const totalSpend = document.getElementById('paramOfAmount');
             const totalSpendParag = document.createElement('p');
             totalSpendParag.className = 'totalMoneyP';
-            while (totalSpend.firstChild) {
-                totalSpend.removeChild(totalSpend.firstChild);
-            }
-    
-            totally += Number(item.spend);
+            totalSpend.innerHTML = '';
+            totally += Number(spend);
             const textNode4 = document.createTextNode(`Total Spend: $${totally}`);
             totalSpendParag.appendChild(textNode4);
             totalSpend.appendChild(totalSpendParag);

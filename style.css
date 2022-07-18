@@ -2,9 +2,13 @@
     margin: 0;
 }
 
+body {
+    height: 100vh;
+}
+
 section {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     background-color: #657580;
     display: flex;
     justify-content: center;
@@ -167,12 +171,7 @@ button:hover {
 
     /* For phones: */
 
-@media only screen and (max-width: 600px) {
-    section {
-        width: 100%;
-        min-height: 150vh;
-    }
-
+@media only screen and (max-width: 650px) {
     section {
         background-color: rgb(226,243,255);
     }
@@ -182,7 +181,6 @@ button:hover {
         width: 90%;
         display: flex;
         justify-content: center;
-        /* margin-bottom: 10px; */
     }
 
     #h1 {
@@ -258,8 +256,8 @@ button:hover {
         align-items: start;
     }
 
-    #totalMoneyP{
-        font: 20px sans-serif;
+    .totalMoneyP{
+        font: 17px sans-serif;
     }
 
     /* LISTS */
@@ -294,15 +292,15 @@ button:hover {
 }
 
 .shopNamesP {
-    font: 20px sans-serif;
+    font: 15px sans-serif;
 }
 
 .datesP {
-    font: 20px sans-serif;
+    font: 15px sans-serif;
 }
 
 .spendP {
-    font: 20px sans-serif;
+    font: 15px sans-serif;
 }
 
 }
