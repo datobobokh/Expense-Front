@@ -99,7 +99,9 @@ const render = (result) => {
              iconDiv.appendChild(icon1);
              iconDiv.appendChild(icon2);
              blocks.appendChild(iconDiv);
-
+             icon2.onclick = () => {
+                getResponsesWithoutBody("http://localhost:8000/api/expenses/", 'DELETE', id);
+            }
              divOfDtSpendIcons.appendChild(iconDiv);
              blocks.appendChild(divOfDtSpendIcons);
              parentDivOfBlocks.appendChild(blocks);
