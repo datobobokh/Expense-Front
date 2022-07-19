@@ -21,8 +21,8 @@ const getResponsesWithBody = async(link, methd, id) => {
     render(result);
 }
 const updateValue = ({target}) => {
-    const {value, id} = target;
-    id == 'inputShop' ? inputValueObj.shop = value :  inputValueObj.spend = value;
+    const {value, id, className} = target;
+    id == 'inputShop' || className == 'editShopInput' ? inputValueObj.shop = value :  inputValueObj.spend = value;
 }
 window.onload = function init () {
     const inputShop = document.getElementById('inputShop');
@@ -47,9 +47,8 @@ const edit = (item, blocks) => {
                  const editShopInput = document.createElement('input');
                  editShopInput.type = 'text';
                  editShopInput.value = shop;
-
-                 editShopInput.addEventListener('change', updateValue);
                  editShopInput.className = 'editShopInput';
+                 editShopInput.addEventListener('change', updateValue);
                  editShopInputDiv.appendChild(editShopInput);
                  blocks.innerHTML = "";
                  blocks.appendChild(editShopInputDiv);
