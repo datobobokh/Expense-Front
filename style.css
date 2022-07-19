@@ -26,7 +26,6 @@ section {
 
 }
 
-
 #h1 {
     color: #f12c0e;
     font-size: 67px;
@@ -145,27 +144,37 @@ button:hover {
     justify-content: space-between;
 }
 
-.shopNames {
+.shopNames, .editShopInputDiv{
     width: 40%;
 }
 
-.divOfDtSpendIcons {
+.divOfDtSpendIcons, .editRestOfDiv {
     width: 60%;
     display: flex;
     justify-content: space-between;
 }
 
-.shopNamesP {
+.shopNamesP, .editShopInput{
     width: 90%;
     font: 16px sans-serif;
 }
 
-.datesP {
+.datesP, .addDateInParag {
     font: 16px sans-serif;
 }
 
-.spendP {
+.spendP, .editSpendInput {
     font: 16px sans-serif;
+}
+
+.editBlocks {
+    display: flex;
+    justify-content: space-between;
+}
+
+.editRestOfDiv {
+    display: flex;
+    justify-content: space-between;
 }
 
 
@@ -256,12 +265,11 @@ button:hover {
         align-items: start;
     }
 
-    .totalMoneyP{
-        font: 17px sans-serif;
+    #totalMoneyP{
+        font: 20px sans-serif;
     }
 
     /* LISTS */
-
 
 #listOfAddedItems {
     width: 90%;
@@ -278,12 +286,12 @@ button:hover {
     justify-content: space-between;
 }
 
-.shopNames {
+.shopNames, .editShopInputDiv {
     width: 50%;
 }
 
 
-.divOfDtSpendIcons {
+.divOfDtSpendIcons, .editRestOfDiv {
     width: 50%;
     display: flex;
     align-items: flex-end;
@@ -291,16 +299,15 @@ button:hover {
     justify-content: space-between;
 }
 
-.shopNamesP {
-    font: 15px sans-serif;
+.shopNamesP, .editShopInput {
+    font: 20px sans-serif;
 }
 
-.datesP {
-    font: 15px sans-serif;
+.datesP, .addDateInParag {
+    font: 20px sans-serif;
 }
 
-.spendP {
-    font: 15px sans-serif;
+.spendP, .editSpendInput {
+    font: 20px sans-serif;
 }
-
 }
