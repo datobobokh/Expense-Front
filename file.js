@@ -1,9 +1,12 @@
 let inputValueObj = {};
+const inputShop = document.getElementById('inputShop');
+const inputSpend = document.getElementById('inputSpend');
 const getResponsesWithoutBody = async(link, methd, id) => {
     const response = await fetch((id ? `${link}${id}` : link ), {
         method: methd
     });
     const result = await response.json();
+    // eslint-disable-next-line no-use-before-define
     render(result);
 }
 const getResponsesWithBody = async(link, methd, id) => {
@@ -18,15 +21,18 @@ const getResponsesWithBody = async(link, methd, id) => {
         })
     });
     const result = await response.json();
+    // eslint-disable-next-line no-use-before-define
     render(result);
 }
 const updateValue = ({target}) => {
-    const {value, id, className} = target;
-    id == 'inputShop' || className == 'editShopInput' ? inputValueObj.shop = value :  inputValueObj.spend = value;
+    const { value, id, className } = target;
+    if (id === 'inputShop' || className === 'editShopInput') {
+        inputValueObj.shop = value 
+    } else {
+        inputValueObj.spend = value
+    }
 }
 window.onload = function init () {
-    const inputShop = document.getElementById('inputShop');
-    const inputSpend = document.getElementById('inputSpend');
     inputShop.addEventListener('change', updateValue);
     inputSpend.addEventListener('change', updateValue);
     getResponsesWithoutBody("http://localhost:8000/api/expenses/", 'GET');
@@ -39,68 +45,72 @@ const addNewExpense = () => {
 }
 const inputButtonElement = document.getElementById('button');
 inputButtonElement.addEventListener('click', addNewExpense);
-const edit = (item, blocks) => {
-    const {id, shop, spend, createdAt} = item;
-    const editShopInputDiv = document.createElement('div');
-                 editShopInputDiv.className = 'editShopInputDiv';
- 
-                 const editShopInput = document.createElement('input');
-                 editShopInput.type = 'text';
-                 editShopInput.value = shop;
-                 editShopInput.className = 'editShopInput';
-                 editShopInput.addEventListener('change', updateValue);
-                 editShopInputDiv.appendChild(editShopInput);
-                 blocks.innerHTML = "";
-                 blocks.appendChild(editShopInputDiv);
- 
-                 // Dates
-                 const editRestOfDiv = document.createElement('div');
-                 editRestOfDiv.className = 'editRestOfDiv';
- 
-                 const addedDate = document.createElement('div');
-                 addedDate.className = 'addedDate';
-                 const addDateInParag = document.createElement('p');
-                 addDateInParag.className = 'addDateInParag';
-                 const textNode2 = document.createTextNode(createdAt);
-                 addDateInParag.appendChild(textNode2);
-                 addedDate.appendChild(addDateInParag);
-                 editRestOfDiv.appendChild(addedDate);
-                
-                //  // Edit Spent USD's
-                 const editSpendInputDiv = document.createElement('div');
-                 editSpendInputDiv.className = 'editSpendInputDiv';
- 
-                 const editSpendInput = document.createElement('input');
-                 editSpendInput.type = 'text';
-                 editSpendInput.size = '5';
-                 editSpendInput.value = spend;
-                 editSpendInput.addEventListener('change', updateValue);
-                 editSpendInput.className = 'editSpendInput';
-                 editSpendInputDiv.appendChild(editSpendInput);
-                 editRestOfDiv.appendChild(editSpendInputDiv);
- 
-                 //Add Icon for Editing Info
-                 const editWholeInfoIconDiv = document.createElement('div');
-                 editWholeInfoIconDiv.className = 'editWholeInfoIconDiv';
- 
-                 const editWholeInfoIcon = document.createElement('img');
-                 editWholeInfoIcon.src = "https://img.icons8.com/emoji/30/000000/check-mark-emoji.png";
-                 editWholeInfoIcon.className = 'editWholeInfoIcon';
-                 editWholeInfoIconDiv.appendChild(editWholeInfoIcon);
-                 editRestOfDiv.appendChild(editWholeInfoIconDiv);
- 
-                 blocks.appendChild(editRestOfDiv);
 
-                 editWholeInfoIcon.onclick = () => {
-                    getResponsesWithBody("http://localhost:8000/api/expenses/", 'PATCH', id);
-                 }
+const edit = (elsRef) => {
+    const { item, blocks } = elsRef;
+    const { id, shop, spend, createdAt } = item;
+    const editShopInputDiv = document.createElement('div');
+    editShopInputDiv.className = 'editShopInputDiv';
+
+    const editShopInput = document.createElement('input');
+    editShopInput.type = 'text';
+    editShopInput.value = shop;
+    editShopInput.className = 'editShopInput';
+    editShopInput.addEventListener('change', updateValue);
+    editShopInputDiv.appendChild(editShopInput);
+    blocks.innerHTML = "";
+    blocks.appendChild(editShopInputDiv);
+
+    // Dates
+    const editRestOfDiv = document.createElement('div');
+    editRestOfDiv.className = 'editRestOfDiv';
+
+    const addedDate = document.createElement('div');
+    addedDate.className = 'addedDate';
+    const addDateInParag = document.createElement('p');
+    addDateInParag.className = 'addDateInParag';
+    const textNode2 = document.createTextNode(createdAt);
+    addDateInParag.appendChild(textNode2);
+    addedDate.appendChild(addDateInParag);
+    editRestOfDiv.appendChild(addedDate);
+
+    // Edit Spent USD's
+    const editSpendInputDiv = document.createElement('div');
+    editSpendInputDiv.className = 'editSpendInputDiv';
+
+    const editSpendInput = document.createElement('input');
+    editSpendInput.type = 'text';
+    editSpendInput.size = '5';
+    editSpendInput.value = spend;
+    editSpendInput.addEventListener('change', updateValue);
+    editSpendInput.className = 'editSpendInput';
+    editSpendInputDiv.appendChild(editSpendInput);
+    editRestOfDiv.appendChild(editSpendInputDiv);
+
+    // Add Icon for Editing Info
+    const editWholeInfoIconDiv = document.createElement('div');
+    editWholeInfoIconDiv.className = 'editWholeInfoIconDiv';
+
+    const editWholeInfoIcon = document.createElement('img');
+    editWholeInfoIcon.src = "https://img.icons8.com/emoji/30/000000/check-mark-emoji.png";
+    editWholeInfoIcon.className = 'editWholeInfoIcon';
+    editWholeInfoIconDiv.appendChild(editWholeInfoIcon);
+    editRestOfDiv.appendChild(editWholeInfoIconDiv);
+
+    blocks.appendChild(editRestOfDiv);
+
+    editWholeInfoIcon.onclick = () => {
+    getResponsesWithBody("http://localhost:8000/api/expenses/", 'PATCH', id);
+    }
 }
-const render = (result) => {
+
+function render (result) {
     let totally = 0;
     const parentDivOfBlocks = document.getElementById('listOfAddedItems');
     parentDivOfBlocks.innerHTML = '';
+
     if (result) {
-        result.map((item, index) => {
+        result.forEach ((item, index) => {
             const {id, shop, spend, createdAt} = item;
             const blocks = document.createElement('div')
             blocks.className = 'blocks';
@@ -144,7 +154,7 @@ const render = (result) => {
             divOfDtSpendIcons.appendChild(iconDiv);
             blocks.appendChild(divOfDtSpendIcons);
             icon1.onclick = () => {
-                edit(item, blocks)
+                edit({item, blocks})
             }
             icon2.onclick = () => {
                 getResponsesWithoutBody("http://localhost:8000/api/expenses/", 'DELETE', id);
